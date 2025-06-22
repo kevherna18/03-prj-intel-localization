@@ -111,8 +111,8 @@ header p {
   transform: scaleX(-1); /* Flip horizontally */
 }
 
-/* Timeline Cards Section */
-section {
+/* Timeline Cards Section - only apply to the first section */
+section:first-of-type {
   padding: 40px 20px; /* Reduced top padding to decrease space */
   background-color: white;
   overflow-x: auto; /* Allow horizontal scrolling */
@@ -120,17 +120,13 @@ section {
   max-width: 1300px; /* Adjusted to show 3 cards (400px + 30px gap) * 3 + padding */
   margin: 0 auto; /* Center the timeline container */
   white-space: nowrap; /* Prevent cards from wrapping to next line */
-}
-
-/* Container for all timeline cards */
-section {
   display: flex; /* Make cards line up horizontally */
   gap: 30px; /* Space between cards */
   padding-bottom: 20px; /* Extra space at bottom for scrollbar */
 }
 
-/* Individual timeline card styling */
-section div {
+/* Individual timeline card styling - only for first section */
+section:first-of-type div {
   background: linear-gradient(135deg, #0071c5, #003d82); /* Changed from white to Intel blue gradient */
   border-radius: 10px;
   padding: 0; /* Remove padding to allow full image coverage */
@@ -148,30 +144,48 @@ section div {
   justify-content: flex-start; /* Align content to top */
 }
 
-/* Card hover effect */
-section div:hover {
+/* Card hover effect - only for timeline cards */
+section:first-of-type div:hover {
   transform: translateY(-5px); /* Lift card slightly on hover */
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Year styling (h2) */
-section div h2 {
+/* Year styling (h2) - only for timeline cards */
+section:first-of-type div h2 {
   color: white; /* Changed from Intel blue to white */
   font-size: 2.5rem; /* Increased from 2rem to make bigger */
   margin-bottom: 10px;
   font-weight: bold;
+  position: relative; /* Position over image */
+  z-index: 3; /* Put text in front */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Changed to dark shadow for readability */
+  margin: 0;
+  padding: 15px 20px 5px 20px;
+  font-size: 2.5rem; /* Increased from 2rem to make bigger */
+  font-weight: bold;
+  margin-top: 10px;
+  padding-top: 20px;
 }
 
-/* Title styling (h3) */
-section div h3 {
+/* Title styling (h3) - only for timeline cards */
+section:first-of-type div h3 {
   color: white; /* Changed from #333 to white */
   font-size: 1.6rem; /* Increased from 1.3rem to make bigger */
   margin-bottom: 15px;
   font-weight: 600;
+  position: relative; /* Position over image */
+  z-index: 3; /* Put text in front */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Changed to dark shadow for readability */
+  margin: 0;
+  padding: 15px 20px 5px 20px;
+  font-size: 1.6rem; /* Increased from 1.3rem to make bigger */
+  font-weight: 600;
+  padding-top: 0;
+  padding-bottom: 10px;
 }
 
-/* Card images - positioned below text */
-section div img {
+/* Card images - positioned below text - only for timeline cards */
+section:first-of-type div img {
   width: 80%; /* Reduced from 100% to make images smaller */
   height: 50%; /* Adjusted height to leave room for text above */
   object-fit: cover; /* Keep image proportions */
@@ -183,35 +197,8 @@ section div img {
   border-radius: 8px; /* Add rounded corners to images */
 }
 
-/* Content container for text - positioned at top */
-section div h2,
-section div h3 {
-  position: relative; /* Position over image */
-  z-index: 3; /* Put text in front */
-  color: white; /* Changed from Intel blue to white */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Changed to dark shadow for readability */
-  margin: 0;
-  padding: 15px 20px 5px 20px;
-}
-
-/* Year styling (h2) - at the very top */
-section div h2 {
-  font-size: 2.5rem; /* Increased from 2rem to make bigger */
-  font-weight: bold;
-  margin-top: 10px;
-  padding-top: 20px;
-}
-
-/* Title styling (h3) - below the year */
-section div h3 {
-  font-size: 1.6rem; /* Increased from 1.3rem to make bigger */
-  font-weight: 600;
-  padding-top: 0;
-  padding-bottom: 10px;
-}
-
-/* Paragraph overlay - appears within the card when hovered */
-section div p {
+/* Paragraph overlay - appears within the card when hovered - only for timeline cards */
+section:first-of-type div p {
   position: absolute; /* Position within the card */
   top: 0;
   left: 0;
@@ -219,8 +206,8 @@ section div p {
   bottom: 0;
   z-index: 4; /* Put paragraph on top of everything */
   
-  /* Blue gradient background */
-  background: linear-gradient(135deg, rgba(77, 166, 255, 0.95), rgba(102, 179, 255, 0.95));
+  /* Blue gradient background - now fully opaque for full coverage */
+  background: linear-gradient(135deg, rgba(77, 166, 255, .95), rgba(102, 179, 255, .95));
   
   /* Flexbox to center content */
   display: flex;
@@ -249,14 +236,232 @@ section div p {
   pointer-events: none;
 }
 
-/* Show paragraph when hovering over card */
-section div:hover p {
+/* Show paragraph when hovering over card - only for timeline cards */
+section:first-of-type div:hover p {
   opacity: 1; /* Make paragraph visible */
   transform: translateY(0); /* Move to normal position */
   pointer-events: auto; /* Allow text selection when visible */
 }
 
-/* Mobile responsive adjustments */
+/* 3-Column Content Section Styling */
+.three-columns {
+  background-color: white; /* Light gray background */
+  padding: 60px 20px; /* Add padding around the section */
+  max-width: none; /* Remove width restrictions */
+  overflow: visible; /* Allow all content to be visible */
+  display: block; /* Use block layout instead of flex */
+}
+
+/* Container for the 3 columns */
+.columns-container {
+  max-width: 1200px; /* Limit width for better readability */
+  margin: 0 auto; /* Center the container */
+  display: flex; /* Use flexbox to put columns side by side */
+  gap: 30px; /* Space between columns */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  align-items: stretch; /* Make all columns the same height */
+}
+
+/* Individual column styling - override timeline card styles */
+.three-columns .columns-container div {
+  flex: 1; /* Each column takes equal width */
+  background: white; /* White background */
+  border: 1px solid #e0e0e0; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 30px; /* Generous padding */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: left; /* Left-aligned text */
+
+  /* Use flexbox to align button at the bottom */
+  display: flex;              /* Enable flexbox for the column */
+  flex-direction: column;     /* Stack content vertically */
+  justify-content: space-between; /* Space out content so button goes to bottom */
+  align-items: center; /* Center all content horizontally */
+}
+
+/* Column hover effect - subtle and different from timeline cards */
+.three-columns .columns-container div:hover {
+  box-shadow: 0 4px 15px rgba(0, 113, 197, 0.15); /* Blue-tinted shadow */
+  transform: none; /* No lift effect like timeline cards */
+}
+
+/* Column headings styling */
+.three-columns .columns-container div h2 {
+  color: #0071c5; /* Intel blue */
+  font-size: 1.8rem; /* Smaller than timeline cards */
+  margin-bottom: 20px; /* Space below heading */
+  font-weight: 600; /* Medium weight */
+  text-shadow: none; /* Remove text shadow */
+  padding: 0; /* Remove padding */
+  position: static; /* Remove positioning */
+  z-index: auto; /* Reset z-index */
+  text-align: center; /* Center heading text */
+}
+
+.column-header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.RISE-icon {
+  width: 40px;
+  height: auto;
+  margin-top: 1px;
+  margin-bottom: 8px;
+}
+
+.commitment-icon {
+  width: 40px;
+  height: auto;
+  margin-top: 1px;
+  margin-bottom: 8px;
+}
+
+.water-icon {
+  width: 40px;
+  height: auto;
+  margin-top: 1px;
+  margin-bottom: 8px;
+}
+
+/* Column paragraph styling */
+.three-columns .columns-container div p {
+  color: #555; /* Dark gray text */
+  font-size: 1rem; /* Standard size */
+  line-height: 1.6; /* Good readability */
+  margin-bottom: 25px; /* Space before button */
+  
+  /* Reset timeline card paragraph properties */
+  position: static; /* Remove absolute positioning */
+  opacity: 1; /* Always visible */
+  background: none; /* No background */
+  display: block; /* Normal block display */
+  padding: 0; /* Remove padding */
+  transform: none; /* Remove transforms */
+  transition: none; /* Remove transitions */
+  pointer-events: auto; /* Always interactive */
+  z-index: auto; /* Reset z-index */
+  text-align: center; /* Center paragraph text */
+  white-space: normal; /* Normal text wrapping */
+}
+
+/* Learn More button styling */
+.three-columns .columns-container div a {
+  display: inline-block; /* Make link behave like a button */
+  background-color: #0071c5; /* Intel blue background */
+  color: white; /* White text */
+  padding: 12px 24px; /* Button padding */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Rounded button */
+  font-weight: 500; /* Medium font weight */
+  transition: background-color 0.3s ease; /* Smooth color change */
+  margin-top: 20px; /* Add space above the button */
+  align-self: center; /* Center the button */
+}
+
+/* Button hover effect */
+.three-columns .columns-container div a:hover {
+  background-color: #005a9e; /* Darker blue on hover */
+}
+
+/* Make Bootstrap primary button match Intel blue on hover */
+.subscribe-form .btn-primary:hover,
+.subscribe-form .btn-primary:focus {
+  background-color: #005a9e !important; /* Darker Intel blue */
+}
+
+/* Subscription section - Intel blue background and center heading */
+section:last-of-type {
+  background: #0071c5; /* Intel blue background */
+  padding: 50px 0 60px 0; /* Top and bottom padding */
+}
+
+/* Center and style the subscription heading */
+section:last-of-type h2 {
+  text-align: center; /* Center the text */
+  color: #fff;        /* White text for contrast */
+  font-size: 2rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Style the subscription form to stand out on blue background */
+section:last-of-type .subscribe-form {
+  background: #f8fafd; /* Light background for contrast */
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 113, 197, 0.08);
+}
+
+/* Footer styling */
+.intel-footer {
+  background: #003d82; /* Darker Intel blue */
+  color: #fff;         /* White text */
+  text-align: center;  /* Center the text */
+  padding: 18px 0;     /* Space above and below */
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.intel-footer p {
+  margin: 0; /* Remove default margin */
+  letter-spacing: 0.5px;
+}
+
+/* Hide any text or elements that appear after the footer */
+/* This works only if the footer is not inside <main> and is the last element in <body> */
+.intel-footer ~ * {
+  display: none !important;
+}
+
+/* Visually hidden class for accessibility (screen readers) */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  border: 0 !important;
+}
+
+/* Skip to main content link - visible on focus for accessibility */
+.visually-hidden-focusable {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 1000;
+  background: #fff;
+  color: #0071c5;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 2px solid #0071c5;
+  font-weight: bold;
+  text-decoration: none;
+}
+.visually-hidden-focusable:focus {
+  left: 10px;
+  top: 10px;
+  width: auto;
+  height: auto;
+  outline: 3px solid #0071c5;
+  outline-offset: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Improve focus outline for keyboard navigation */
+section:first-of-type div:focus {
+  outline: 3px solid #0071c5; /* Intel blue outline */
+  outline-offset: 2px;
+}
+
+/* Mobile responsive for 3-column section */
 @media (max-width: 768px) {
   /* Scroll instruction mobile styling */
   .scroll-instruction {
@@ -273,16 +478,16 @@ section div:hover p {
     width: 25px;
   }
   
-  /* Timeline section - stack cards vertically on mobile */
-  section {
+  /* Timeline section - stack cards vertically on mobile - only first section */
+  section:first-of-type {
     display: block; /* Change from flex to block for vertical stacking */
     max-width: none; /* Remove width limit */
     overflow-x: visible; /* Remove horizontal scroll */
     padding: 30px 20px; /* Reduced mobile padding */
   }
   
-  /* Individual cards - full width and stacked */
-  section div {
+  /* Individual timeline cards - full width and stacked */
+  section:first-of-type div {
     min-width: 100%; /* Full width on mobile */
     max-width: 100%; /* Full width on mobile */
     margin-bottom: 30px; /* Space between stacked cards */
@@ -290,30 +495,46 @@ section div:hover p {
     height: 350px; /* Slightly smaller height for mobile */
   }
   
-  /* Last card - no bottom margin */
-  section div:last-child {
+  /* Last timeline card - no bottom margin */
+  section:first-of-type div:last-child {
     margin-bottom: 0;
   }
   
-  section div h2 {
+  /* Timeline card text sizing on mobile */
+  section:first-of-type div h2 {
     font-size: 2rem; /* Increased mobile size proportionally */
   }
   
-  section div h3 {
+  section:first-of-type div h3 {
     font-size: 1.3rem; /* Increased mobile size proportionally */
   }
   
-  /* Mobile images - adjust size for stacked layout */
-  section div img {
+  /* Timeline card images - adjust size for stacked layout */
+  section:first-of-type div img {
     width: 70%; /* Slightly smaller on mobile */
     height: 45%; /* Adjust height for mobile */
   }
 }
 
-/* Tablet responsive adjustments */
+/* Tablet responsive adjustments - only for timeline section */
 @media (min-width: 769px) and (max-width: 1024px) {
-  /* Show only 2 cards on tablet due to wider cards */
-  section {
+  /* Show only 2 timeline cards on tablet due to wider cards */
+  section:first-of-type {
     max-width: 860px; /* Adjusted for 2 wider cards (400px + 30px gap) * 2 + padding */
   }
 }
+
+/* RTL support for custom styles */
+html[dir="rtl"] .scroll-instruction {
+  flex-direction: row-reverse; /* Flip arrows and text */
+}
+html[dir="rtl"] .three-columns .columns-container,
+html[dir="rtl"] section:first-of-type {
+  direction: rtl;
+}
+html[dir="rtl"] .three-columns .columns-container div,
+html[dir="rtl"] .three-columns .columns-container div p,
+html[dir="rtl"] section:first-of-type div p {
+  text-align: right;
+}
+
